@@ -8,7 +8,7 @@ export default class AddRoom extends Component {
              type:'',
              name:'',
              color:'',
-             item: ['c','d']
+             item: []
         }
     }
     chooseType = e =>{
@@ -16,6 +16,11 @@ export default class AddRoom extends Component {
     }
 
     addName = e =>{
+        if(e.target.value.length>5){
+            alert('only 5')
+            this.setState({name:'',type:'',color:''})
+            return;
+        }
         this.setState({name:e.target.value})
     }
     addColor = e =>{

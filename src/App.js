@@ -23,14 +23,17 @@ export default class App extends Component {
     this.setState({index:i})
   }
  
-//   additem = (e,i) =>{
-//   //  this.setState({roomsList[i]:[{name:e}] })
-//  // this.state.roomsList[i].setState({name:e})
-//  this.setState(roomsList:[{this.state.roomsList[i].name:e}])
-//  let arr = [...this.state.roomsList]
-//  arr[i]:{name:e};
- 
-//   }
+  additem = (e,i) =>{
+ this.setState({roomsList:[...this.state.roomsList , this.state.roomsList[i].item=[{name:e,status:'red'},...this.state.roomsList[i].item]]})
+  }
+ changeStat = (ix,i) =>{
+
+  if(this.state.roomsList[ix].item[i].status==='green'){
+      this.setState({roomsList:[...this.state.roomsList , this.state.roomsList[ix].item[i].status='red']})
+  }
+  else{ this.setState({roomsList:[...this.state.roomsList , this.state.roomsList[ix].item[i].status='green']})
+}
+ }
   render() {
     return (
       <div>
@@ -39,7 +42,7 @@ export default class App extends Component {
         <Switch>
                 <Route exact path ='/' component={()=>{return <Home roomsList ={this.state.roomsList} clickroom={this.clickroom} />}}></Route>
                 <Route exact path ='/addRoom' component={()=>{return <AddRoom add={this.addroom} />}}></Route>
-                <Route exact path ='/room' component={()=>{return <Room room={this.state.roomsList} i={this.state.index} additem={this.additem} />}}></Route>
+                <Route exact path ='/room' component={()=>{return <Room room={this.state.roomsList} i={this.state.index} additem={this.additem} changeStat={this.changeStat} />}}></Route>
         </Switch>
       </Router>
       </div>

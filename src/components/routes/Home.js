@@ -14,9 +14,6 @@ export default class Home extends Component {
     }
     
     render() {
-    // document.getElementsByTagName('Link').forEach(element => {
-    //     element.addEventListener('click',this.room(element.id))
-    // });
         return (
             <div id='rooms'>
                 {this.state.roomsList.map((el,i)=>{

@@ -8,44 +8,67 @@ export default class Room extends Component {
         this.state = {
              room:props.room[props.i],
              index:props.i,
-             //item:[{name:'a'},{name:'b'}]
-             item:[]
+            
         }
+    }
+   
+    select = () =>{
+        document.getElementById('rm').style.display = "none"; 
+        document.getElementById('its').style.display = "block"; 
     }
     
     additem = (e) =>{
-        console.log(e.target.value)
-        this.setState({item:[{name:e.target.value} , ...this.state.item]})
-        console.log(this.state.item)
-     // this.props.additem(e.target.value,this.state.index)
-      //this.setState({room:{item:[e, ...this.state.room.item]}})
+      if(e.target.value=='steryo'){
+          if(this.state.room.item.find(el=>el.name===e.target.value)){
+              alert('no no no to loud');
+              return;
+          }
+      }
+      if(e.target.value=='boyler'){
+          if(this.state.room.type!='bathroom'){
+              alert('only in bath')
+              return;
+          }
+      }
+      if(this.state.room.item.length===5){
+        alert('to much shit')  
+        return;}
+      this.props.additem(e.target.value,this.state.index)
+      document.getElementById('its').style.display = "none"; 
+      document.getElementById('rm').style.display = "block"; 
     }
-
+    changeStat = i =>{
+      this.props.changeStat(this.state.index,i)
+    }
     render() {
         return (
-            <div>
+        <div>
+            <div id='rm'>
                 <h3>room name:  {this.state.room.name}</h3>   
                 <h3>room type:  {this.state.room.type}</h3>   
-                {this.state.item.map((el)=>{
-                // {this.state.room.item.map((el,i)=>{
-                    console.log(el.name);
-                    
-                    return <Item itemname={el.name} />
+               
+                 {this.state.room.item.map((el,i)=>{
+                    console.log("gg"+el);
+                    /// why coludnt change color via stats
+                    // how do we:{el.addEventListener('click',)}
+                    return <Item  itemname={el.name} status={el.status} changeStat={this.changeStat} i={i} />
                 })}
-                <button>add prodact</button>
+                <button onClick={this.select}>add prodact</button>
+           </div>
 
 
 
-
-                <div id='items'>
-                <select id="type" onChange={this.additem} >
+                
+                    <select id='its' style={{display:'none'}} onChange={this.additem} >
                       <option value='aircondition'>airconditoining</option>
                       <option value="boyler">boyler</option>
                       <option value="steryo">steryo</option>
                       <option value="lamp">lamp</option>
                 </select>
-                </div>
+                
             </div>
+                
+           
         )
     }
 }

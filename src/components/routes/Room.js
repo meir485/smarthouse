@@ -48,9 +48,6 @@ export default class Room extends Component {
                 <h3>room type:  {this.state.room.type}</h3>   
                
                  {this.state.room.item.map((el,i)=>{
-                    console.log("gg"+el);
-                    /// why coludnt change color via stats
-                    // how do we:{el.addEventListener('click',)}
                     return <Item  itemname={el.name} status={el.status} changeStat={this.changeStat} i={i} />
                 })}
                 <button onClick={this.select}>add prodact</button>

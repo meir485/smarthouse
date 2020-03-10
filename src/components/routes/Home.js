@@ -13,6 +13,7 @@ export default class Home extends Component {
         this.props.clickroom(i)
     }
     
+   
     render() {
         return (
             <div id='rooms'>

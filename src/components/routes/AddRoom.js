@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import axios from "axios"
 import Color from '../Color'
 export default class AddRoom extends Component {
     constructor(props) {
@@ -11,9 +12,63 @@ export default class AddRoom extends Component {
              color:'',
              item: [],
              i:'',
-             colors:props.colors
+             colorss:[]
         }
     }
+
+    //////////////////////////////
+     
+  color =() =>{
+    let x = this.state.color
+    //works only on first//x=x.replace(" ",",")
+    let arr=this.colorStrToArr(x)
+   this.setState({ colorss:[]})
+   document.getElementById('clr').innerHTML='';
+    axios.get( `http://www.colr.org/json/tags/${x}`)
+    .then(response => {
+    this.colorInculded(response,arr)
+  }).catch(function (error){
+    console.log(error);
+  })
+    console.log(this.state.colorss);
+  }
+
+   /// func shows colors of all colors[0]
+  colorInculded=(response,arr,colors)=>{
+    response.data.colors.forEach(color => {
+      if(this.state.colorss.length<10){
+        let names=[]
+        for(let tag of color.tags){
+         names.push(tag.name)
+         }
+         let f=true
+        for(let c of arr){
+          if(!names.includes(c)){
+            f=false;
+            break
+          }
+        }
+        if(f){
+           this.setState({colorss:[{hex:color.hex, namess:names.toString()}, ...this.state.colorss]})
+        }
+      }
+        
+      });
+  }
+  ///puts string in array/returns array
+  colorStrToArr = (x) =>{
+    let m=-1;
+    let arr=[]
+
+    for (var i = 0; i < x.length; i++) {
+      if(x.charAt(i)===","){
+        arr.push(x.slice(m+1,i))
+        m=i
+      }
+    }
+    return arr
+  }
+    ////////////////////////////
     chooseType = e =>{
         this.setState({type:e.target.value})
     }
@@ -30,26 +85,22 @@ export default class AddRoom extends Component {
     addColor = e =>{
         this.setState({color:e.target.value})
         if(this.state.i){clearTimeout(this.state.i)}
-        this.setState({i:setTimeout(()=>this.props.color(this.state.color),1000)})
+        this.setState({i:setTimeout(()=>this.color(),1000)})
         
     }
-    // addColor = e =>{
-    //     console.log('ccc');
-        
-    //   this.props.color(document.getElementById('clr').value)
-    //     this.setState({color:e.target.value})
-    // }
+   chooseClr = e => {
+
+       document.getElementById('clrIn').value=e.target.innerHTML
+       this.setState({color:e.target.style.backgroundColor})
+
+   }
     add = () =>{
         this.props.add(this.state.type,this.state.name,this.state.color,this.state.item)
     }
     render() {
         return (
             <div>
-                <div>
-                     {this.state.colors.map(cl=>{
-                   return <h1>{cl.hrx}{cl.namessss}</h1>  
-                })}
-                </div>
+                
                 <select id="type" onChange={this.chooseType} >
                       <option value="bathroom">bathroom</option>
                       <option value="sleep room">sleep</option>
@@ -57,11 +108,18 @@ export default class AddRoom extends Component {
                       <option value="living room">living</option>
                 </select>
                 <input onChange={this.addName} placeholder="name"/>
-               <input  onChange={this.addColor} placeholder="color---type , after each color , including first/last" value={this.state.color}/>
+               <input id='clrIn' onChange={this.addColor} placeholder="color---type , after each color , including first/last" />
                {/* <input id="clr" placeholder="color---type , after each color , including first/last"/>
                <button onClick={this.addColor}>look for color</button> */}
                 <Link to ='/' onClick={this.add}>add</Link>
-               
+               <div id='clr'>
+                      {this.state.colorss.map((cl,i)=>{
+                        if(i===10){return;}
+                         console.log(cl.hex)
+                        return <button onClick={this.chooseClr}><h1 style={{backgroundColor:`#${cl.hex}`,hight:'50px',width:'250px'}}>{cl.namess}</h1>  </button>     
+                })}
+              
+                </div>
             </div>
         )
     }

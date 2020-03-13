@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/meir485/smarthouse/static/css/main.3658aed0.chunk.css",
+    "main.js": "/meir485/smarthouse/static/js/main.a14e148f.chunk.js",
+    "main.js.map": "/meir485/smarthouse/static/js/main.a14e148f.chunk.js.map",
+    "runtime-main.js": "/meir485/smarthouse/static/js/runtime-main.9dce8651.js",
+    "runtime-main.js.map": "/meir485/smarthouse/static/js/runtime-main.9dce8651.js.map",
+    "static/css/2.67123b20.chunk.css": "/meir485/smarthouse/static/css/2.67123b20.chunk.css",
+    "static/js/2.0b08c318.chunk.js": "/meir485/smarthouse/static/js/2.0b08c318.chunk.js",
+    "static/js/2.0b08c318.chunk.js.map": "/meir485/smarthouse/static/js/2.0b08c318.chunk.js.map",
+    "index.html": "/meir485/smarthouse/index.html",
+    "precache-manifest.b59ec5e98914599a8eb483a916afbe32.js": "/meir485/smarthouse/precache-manifest.b59ec5e98914599a8eb483a916afbe32.js",
+    "service-worker.js": "/meir485/smarthouse/service-worker.js",
+    "static/css/2.67123b20.chunk.css.map": "/meir485/smarthouse/static/css/2.67123b20.chunk.css.map",
+    "static/css/main.3658aed0.chunk.css.map": "/meir485/smarthouse/static/css/main.3658aed0.chunk.css.map",
+    "static/js/2.0b08c318.chunk.js.LICENSE.txt": "/meir485/smarthouse/static/js/2.0b08c318.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9dce8651.js",
+    "static/css/2.67123b20.chunk.css",
+    "static/js/2.0b08c318.chunk.js",
+    "static/css/main.3658aed0.chunk.css",
+    "static/js/main.a14e148f.chunk.js"
+  ]
+}

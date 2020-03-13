@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+//,hight:'50px',width:'100px'
 export default class Item extends Component {
     constructor(props) {
         super(props)
@@ -19,9 +19,8 @@ export default class Item extends Component {
     
     render() {
         return (
-            <div onClick={() => this.changeStat(this.state.i)}  style={{backgroundColor:`${this.state.status}`,hight:'50px',width:'50px' }}>
+            <div onClick={() => this.changeStat(this.state.i)}  style={{backgroundColor:`${this.state.status}` }}>
                 <h6>{this.state.name}</h6>
-    
             </div>
         )
     }

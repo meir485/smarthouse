@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import axios from "axios"
-import Color from '../Color'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
+//import Color from '../Color'
 export default class AddRoom extends Component {
     constructor(props) {
         super(props)
@@ -100,26 +103,30 @@ export default class AddRoom extends Component {
     render() {
         return (
             <div>
-                
-                <select id="type" onChange={this.chooseType} >
+              <Row>
+                <Col><Row>
+                  <select id="type" onChange={this.chooseType} placeholder="room type" >
+                      <option value="">roomtype</option>
                       <option value="bathroom">bathroom</option>
                       <option value="sleep room">sleep</option>
                       <option value="kitchen">kitchen</option>
                       <option value="living room">living</option>
                 </select>
-                <input onChange={this.addName} placeholder="name"/>
-               <input id='clrIn' onChange={this.addColor} placeholder="color---type , after each color , including first/last" />
-               {/* <input id="clr" placeholder="color---type , after each color , including first/last"/>
-               <button onClick={this.addColor}>look for color</button> */}
-                <Link to ='/' onClick={this.add}>add</Link>
+                </Row>
+                <Row><input onChange={this.addName} placeholder="name"/></Row>
+                <Row> <input id='clrIn' onChange={this.addColor} placeholder="color---type , after each color , including first/last" /></Row>
+               
                <div id='clr'>
                       {this.state.colorss.map((cl,i)=>{
                         if(i===10){return;}
                          console.log(cl.hex)
-                        return <button onClick={this.chooseClr}><h1 style={{backgroundColor:`#${cl.hex}`,hight:'50px',width:'250px'}}>{cl.namess}</h1>  </button>     
+                        return <Row><button onClick={this.chooseClr}><h1 style={{backgroundColor:`#${cl.hex}`,hight:'50px',width:'500px'}}>{cl.namess}</h1>  </button> </Row>    
                 })}
-              
-                </div>
+                </div></Col>
+                <Col><Link to ='/' onClick={this.add}>add</Link></Col>
+              </Row>
+                
+                 
             </div>
         )
     }

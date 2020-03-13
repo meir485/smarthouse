@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-// 
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Item from '../Item'
 export default class Room extends Component {
     constructor(props) {
@@ -44,19 +45,19 @@ export default class Room extends Component {
         return (
         <div>
             <div id='rm'>
-                <h3>room name:  {this.state.room.name}</h3>   
-                <h3>room type:  {this.state.room.type}</h3>   
-               
+                <Row>
+                    <Col><h3>room name:  {this.state.room.name}</h3>   </Col>
+                    <Col><h3>room type:  {this.state.room.type}</h3></Col>
+                </Row>
+                <Row>
                  {this.state.room.item.map((el,i)=>{
-                    return <Item  itemname={el.name} status={el.status} changeStat={this.changeStat} i={i} />
+                    return <Col><Item  itemname={el.name} status={el.status} changeStat={this.changeStat} i={i} /></Col>
                 })}
+                </Row>
                 <button onClick={this.select}>add prodact</button>
            </div>
-
-
-
-                
-                    <select id='its' style={{display:'none'}} onChange={this.additem} >
+             <select id='its' style={{display:'none'}} onChange={this.additem} >
+                      <option value=''></option>
                       <option value='aircondition'>airconditoining</option>
                       <option value="boyler">boyler</option>
                       <option value="steryo">steryo</option>
